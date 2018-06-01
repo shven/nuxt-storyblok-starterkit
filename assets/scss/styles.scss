@@ -1,0 +1,17 @@
+// CONFIG
+@import "config";
+@import "mixins";
+@import "syntax";
+
+// STRUCTURE
+// @import "layout/footerMenu";
+// @import "layout/page";
+// @import "layout/styleguide";
+
+// RESET
+@import "reset";
+
+// UTILS
+@import "utils";
+
+// COMPONENTS are embedded in .Vue files
