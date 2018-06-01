@@ -1,7 +1,7 @@
 <template>
   <div class="Teaser" v-editable="blok">
     <div class="Teaser-image"
-      v-lazy:background-image="blok.image">
+      :style="{backgroundImage: 'url(' + blok.image + ')'}">
     </div>
     <div class="Teaser-content">
       <vue-markdown>{{ blok.text }}</vue-markdown>
@@ -11,13 +11,11 @@
 
 <script>
   import VueMarkdown from 'vue-markdown';
-  import VueLazyLoad from 'vue-lazyload';
 
   export default {
     props: ['blok'],
     components: {
-      VueMarkdown,
-      VueLazyLoad
+      VueMarkdown
     }
   }
 </script>

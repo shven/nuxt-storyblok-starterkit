@@ -1,7 +1,7 @@
 <template>
-  <section class="Hero"
+  <section class="Hero" data-src="/media/design-is-dead-team.jpg"
     v-editable="blok"
-    v-lazy:background-image="blok.image"
+    :style="{backgroundImage: 'url(' + blok.image + ')'}"
     :class="{
       'tiny': blok.size == 'tiny',
       'small': blok.size == 'small',
