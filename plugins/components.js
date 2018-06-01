@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload)
 
 import Page from '~/components/Page.vue'
 import Hero from '~/components/Hero.vue'
