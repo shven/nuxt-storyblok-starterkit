@@ -1,0 +1,31 @@
+{
+  "name": "nuxt-storyblok-starterkit",
+  "version": "1.0.0",
+  "description": "Nuxt.js + Storyblok starterkit",
+  "author": "Sven Aarts <info@svenaarts.be>",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "nuxt": "^1.0.0",
+    "nuxt-sass-resources-loader": "^2.0.0",
+    "storyblok-nuxt": "0.0.3",
+    "vue-markdown": "^2.2.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "node-sass": "^4.9.0",
+    "push-dir": "^0.4.1",
+    "sass-loader": "^7.0.1"
+  }
+}
