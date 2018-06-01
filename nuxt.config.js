@@ -66,7 +66,8 @@ module.exports = {
             if (!res.data.links.hasOwnProperty(key)) continue;
 
             var obj = res.data.links[key];
-            if(obj.hasOwnProperty('slug')) {
+            // do not generate empty folder
+            if(obj.hasOwnProperty('slug') && obj.slug.substr(0,1) !== '_' && !obj.is_folder) {
               pages.push(obj.slug)
             }
           }
