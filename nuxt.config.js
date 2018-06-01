@@ -3,7 +3,7 @@ const axios = require("axios");
 module.exports = {
   modules: [
     ['storyblok-nuxt', {accessToken: 'AJwMQue3YmvF9GhvSrecTQtt', cacheProvider: 'memory'}],
-    ['nuxt-sass-resources-loader', '@/assets/scss/styles.scss'],
+    ['nuxt-sass-resources-loader', '@/assets/scss/_config.scss'],
   ],
   plugins: [
     '~/plugins/components'
@@ -12,9 +12,6 @@ module.exports = {
     middleware: 'settings',
     base: '/nuxt-storyblok-starterkit/'
   },
-  css: [
-    '@/assets/scss/styles.scss'
-  ],
   /*
   ** Headers of the page
   */

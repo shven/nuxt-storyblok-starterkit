@@ -38,9 +38,3 @@ $sizes: (
 @function size($size) {
   @return map-get($sizes, $size);
 }
-
-// LAYOUT
-$layout-sidebar--collapsed: 46px;
-$layout-sidebar--expanded: 280px;
-$layout-sidebar--alwaysShowSidebar: size('huge');
-$layout-footerHeight: 60px;

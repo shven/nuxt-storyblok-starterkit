@@ -34,6 +34,8 @@
 </script>
 
 <style lang="scss">
+  @import "../assets/scss/styles";
+
   $pageHeaderHeight: 75px;
   $pageSidebarMinimumWidth: 280px;
 

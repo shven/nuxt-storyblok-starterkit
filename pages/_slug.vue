@@ -5,8 +5,6 @@
       :key="story.content._uid"
       :blok="story.content"
       :is="story.content.component"></component>
-
-    <pre style="background-color: blue; color: white;">{{story}}</pre>
   </section>
 </template>
 
