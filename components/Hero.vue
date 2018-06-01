@@ -1,5 +1,5 @@
 <template>
-  <section class="Hero" data-src="/media/design-is-dead-team.jpg"
+  <section class="Hero"
     v-editable="blok"
     :style="{backgroundImage: 'url(' + blok.image + ')'}"
     :class="{

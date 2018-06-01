@@ -22,9 +22,23 @@ export default {
       location.reload(true)
     })
   },
+  head () {
+    let story = this.story
+    return {
+      title: story.name,
+      meta: [
+        {
+          hid: `description`,
+          name: 'description',
+          content: story.content.metadescription
+        }
+      ]
+    }
+  },
   asyncData (context) {
     // Load the JSON from the API
     const slug = context.params.slug ? context.params.slug : 'home';
+
     return context.app.$storyapi.get(`cdn/stories/${slug}`, {
       //version: context.version
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
