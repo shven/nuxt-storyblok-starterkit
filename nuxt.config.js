@@ -9,7 +9,8 @@ module.exports = {
     '~/plugins/components'
   ],
   router: {
-    middleware: 'settings'
+    middleware: 'settings',
+    base: '/nuxt-storyblok-starterkit/'
   },
   css: [
     '@/assets/scss/styles.scss'
