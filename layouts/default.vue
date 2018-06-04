@@ -79,6 +79,9 @@
     transition: 0.45s cubic-bezier(.24, .54, .27, .99) transform;
     will-change: transform;
 
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
     .Page-sidebarState:checked + .Page & {
       overflow-y: hidden;
       transform: translate3d($pageSidebarMinimumWidth, 0, 0);
