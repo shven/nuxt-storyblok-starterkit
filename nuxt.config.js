@@ -6,7 +6,8 @@ module.exports = {
     ['nuxt-sass-resources-loader', '@/assets/scss/_config.scss'],
   ],
   plugins: [
-    '~/plugins/components'
+    { src: '~/plugins/components'},
+    { src: '~/plugins/localStorage.js', ssr: false }
   ],
   router: {
     middleware: 'settings',
@@ -40,7 +41,6 @@ module.exports = {
   build: {
     /*
     ** Run ESLint on save
-    */
     extend(config, {isDev, isClient}) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -51,6 +51,7 @@ module.exports = {
         })
       }
     }
+    */
   },
   generate: {
     routes: function () {
@@ -68,7 +69,7 @@ module.exports = {
             if(
               obj.hasOwnProperty('slug') &&
               obj.slug.substr(0,1) !== '_' &&
-              obj.slug.indexOf('/') < 1 &&
+              // obj.slug.indexOf('/') < 1 &&
               !obj.is_folder
             ) {
               pages.push(obj.slug)
