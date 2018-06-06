@@ -1,16 +1,15 @@
 <template>
-  <nuxt-link
-    :key="id"
-    :to="id">
+  <nuxt-link class="card" :key="slug" :to="slug">
     <article class="post-preview">
       <div
-        :style="{backgroundImage: 'url(' + thumbnailImage + ')'}"
+        v-if="primaryimage"
+        :style="{backgroundImage: 'url(' + primaryimage + ')'}"
         class="post-preview-thumbnail">
 
       </div>
       <div class="post-preview-content">
-        <h1>{{ title }}</h1>
-        <p>{{ excerpt }}</p>
+        <h1>{{ name }}</h1>
+        <p>{{ primaryimage }}</p>
       </div>
     </article>
   </nuxt-link>
@@ -19,23 +18,18 @@
 <script>
   export default {
     props: {
-      title: {
+      name: {
         type: String,
         required: true
       },
-      excerpt: {
+      primaryimage: {
         type: String,
-        required: true
+        default: ''
       },
-      thumbnailImage: {
-        type: String,
-        require: true
-      },
-      id: {
+      slug: {
         type: String,
         require: true
       }
-
     }
   }
 </script>
