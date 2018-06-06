@@ -4,7 +4,7 @@
     <div class="Page">
       <PageSidebar />
 
-      <div class="Page-main u-backgroundColor--light" id="scrollingPanel">
+      <div class="Page-main u-backgroundColor--light">
         <label class="Page-overlay" for="page-sidebarstate"></label>
         <PageHeader />
         <PageContent />
@@ -43,51 +43,20 @@
     display: none;
   }
 
-  .Page {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-  }
-
   .Page-sidebar {
     position: fixed;
     height: 100vh;
     background: black;
     color: white;
+    z-index: 10;
     padding: 20px;
     width: $pageSidebarMinimumWidth;
-    transform: translate3d(-$pageSidebarMinimumWidth + 50, 0, 0);
+    transform: translate3d(-$pageSidebarMinimumWidth, 0, 0);
     transition: 0.45s cubic-bezier(.24, .54, .27, .99) transform;
     will-change: transform;
-
-    @media screen and (min-width: size('small')) {
-      width: $pageSidebarMinimumWidth+50;
-      transform: translate3d(-$pageSidebarMinimumWidth + 100, 0, 0);
-    }
 
     .Page-sidebarState:checked + .Page & {
       transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .Page-main {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    overflow-y: scroll;
-    transition: 0.45s cubic-bezier(.24, .54, .27, .99) transform;
-    will-change: transform;
-
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-
-    .Page-sidebarState:checked + .Page & {
-      overflow-y: hidden;
-      transform: translate3d($pageSidebarMinimumWidth, 0, 0);
-      @media screen and (min-width: size('small')) {
-        transform: translate3d($pageSidebarMinimumWidth+50, 0, 0);
-      }
     }
   }
 
@@ -122,15 +91,20 @@
   }
 
   .Page-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 0;
-    height: 0;
+    height: 100vh;
     cursor: pointer;
+    background: black;
+    opacity: 0;
+    transition: 0.25s cubic-bezier(.24, .54, .27, .99) opacity, 0s 0.25s width;
+    z-index: 9;
     .Page-sidebarState:checked + .Page & {
-      width: 100%;
-      height: 150%;
+      opacity: 0.25;
+      width: 100vw;
+      transition: 0.25s cubic-bezier(.24, .54, .27, .99) opacity, 0s 0s width;
     }
   }
 
