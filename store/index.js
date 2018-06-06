@@ -35,9 +35,7 @@ const store = () => {
         })
       },
       async getPosts ({commit}) {
-
-
-        return this.$storyapi.get(`cdn/stories`, {
+        return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
           starts_with: 'blog',
           version: 'published'
         }).then((res) => {
