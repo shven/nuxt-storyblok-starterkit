@@ -10,8 +10,8 @@ const store = () => {
       post: {}
     },
     actions: {
-      async nuxtServerInit ({commit}, {store, isClient, isServer, route, params}) {
-        if (isServer && params.id) {
+      async nuxtServerInit ({commit}, {params}) {
+        if (process.server && params.id) {
           return this.$storyapi.get(`cdn/stories/blog/${params.id}?cv=` + Date.now(), {
             version: 'published'
           }).then((res) => {
