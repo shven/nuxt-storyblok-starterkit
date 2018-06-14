@@ -87,7 +87,6 @@ small {
 .Title, h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
   padding-bottom: $spacer/2;
-  text-transform: uppercase;
 
   &.tiny {
     font-size: 0.75rem;
@@ -107,6 +106,14 @@ small {
 
   &.huge {
     font-size: 3rem;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.noSpaceBelow {
+    padding-bottom: 5px;
   }
 
   &:only-child {

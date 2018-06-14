@@ -7,6 +7,7 @@ module.exports = {
   ],
   plugins: [
     { src: '~/plugins/components'},
+    { src: '~/plugins/masonry'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
   router: {

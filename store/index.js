@@ -6,12 +6,14 @@ const store = () => {
       settings: {
         primary_navigation: []
       },
+      employees: [],
       posts: [],
       post: {}
     },
     actions: {
       async nuxtServerInit ({commit}, {params}) {
         if (process.server && params.id) {
+          console.log(params.id, 'params id');
           return this.$storyapi.get(`cdn/stories/blog/${params.id}?cv=` + Date.now(), {
             version: 'published'
           }).then((res) => {
@@ -34,10 +36,18 @@ const store = () => {
           commit('setSettings', res.data.story.content)
         })
       },
+      async getEmployees ({commit}) {
+        return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
+          starts_with: '_employees/',
+          version: 'draft'
+        }).then((res) => {
+          commit('setEmployees', res.data.stories)
+        })
+      },
       async getPosts ({commit}) {
         return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
-          starts_with: 'blog',
-          version: 'published'
+          starts_with: 'blog/',
+          version: 'draft'
         }).then((res) => {
           commit('setPosts', res.data.stories)
         })
@@ -52,6 +62,9 @@ const store = () => {
     mutations: {
       setSettings (state, settings) {
         state.settings = settings
+      },
+      setEmployees: (state, posts) => {
+        state.employees = posts
       },
       setPosts: (state, posts) => {
         state.posts = posts

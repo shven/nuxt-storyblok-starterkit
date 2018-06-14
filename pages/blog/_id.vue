@@ -1,15 +1,18 @@
 <template>
   <section>
     <component
-      v-if="post.content.component"
-      :key="post.content._uid"
-      :blok="post.content"
-      :is="post.content.component"></component>
+      v-if="story.content.component"
+      :key="story.content._uid"
+      :blok="story.content"
+      :is="story.content.component"></component>
   </section>
 </template>
 
 <script>
   export default {
+    data () {
+      return { story: { content: {} } }
+    },
     mounted () {
       this.$storyblok.init()
       this.$storyblok.on('change', () => {
@@ -20,27 +23,27 @@
       })
     },
     head () {
-      let post = this.post
+      let story = this.story
       return {
-        title: post.name,
+        title: story.name,
         meta: [
           {
             hid: `description`,
             name: 'description',
-            content: post.content.metadescription
+            content: story.content.metadescription
           }
         ]
       }
     },
-    async fetch ({ store, params }) {
-      if (store.state.post.slug !== params.id) {
-        await store.dispatch('getPost', params.id)
-      }
-    },
-    computed: {
-      post () {
-        return this.$store.state.post
-      }
+    asyncData (context) {
+      const id = context.params.id ? context.params.id : 'home';
+      return context.app.$storyapi.get(`cdn/stories/blog/${id}`, {
+        version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
+      }).then((res) => {
+        return res.data
+      }).catch((res) => {
+        context.error({ statusCode: res.response.status, message: res.response.data })
+      })
     }
   }
 </script>
