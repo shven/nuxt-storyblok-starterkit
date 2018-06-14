@@ -11,6 +11,7 @@ const store = () => {
       post: {}
     },
     actions: {
+      /*
       async nuxtServerInit ({commit}, {params}) {
         if (process.server && params.id) {
           console.log(params.id, 'params id');
@@ -29,6 +30,7 @@ const store = () => {
           })
         }
       },
+      */
       async loadSettings ({ commit }, context) {
         return this.$storyapi.get(`cdn/stories/_settings`, {
           version: context.version
