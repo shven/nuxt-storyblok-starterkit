@@ -7,7 +7,6 @@
   </svg>
 </template>
 
-
 <script>
   export default {
     props: {

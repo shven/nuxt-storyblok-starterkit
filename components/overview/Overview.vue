@@ -1,32 +1,33 @@
 <template>
   <div v-editable="blok">
-    <!-- If list type is masonry -->
-    <masonry v-if="blok.listtype == 'masonry'"
-      :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
-      :gutter="0">
-      <div v-for="(post, index) in stories" :key="index">
-        <brick
+    <spinner :loading="loading">
+      <!-- If list type is masonry -->
+      <masonry v-if="blok.listtype == 'masonry'"
+        :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
+        :gutter="0">
+        <div v-for="(post, index) in stories" :key="index">
+          <brick
+            :key="post.full_slug"
+            :post="post"
+            :name="post.name"
+            :author="post.content.author"
+            :published="post.content.published"
+            :primaryimage="post.content.primaryimage"
+            :slug="post.full_slug" />
+        </div>
+      </masonry>
+
+      <!-- else -->
+      <ul class="Overview"
+          v-else
+          :class="['Overview--' + blok.listtype]">
+        <component
+          v-for="post in stories"
           :key="post.full_slug"
           :post="post"
-          :name="post.name"
-          :author="post.content.author"
-          :published="post.content.published"
-          :primaryimage="post.content.primaryimage"
-          :slug="post.full_slug" />
-      </div>
-    </masonry>
-
-    <!-- else -->
-    <ul class="Overview"
-        v-else
-        :class="['Overview--' + blok.listtype]">
-      <component
-        v-for="post in stories"
-        :key="post.full_slug"
-        :post="post"
-        :is="blok.listtype" />
-    </ul>
-
+          :is="blok.listtype" />
+      </ul>
+    </spinner>
   </div>
 </template>
 
@@ -35,7 +36,7 @@ export default {
     data () {
       return {
         stories: [] ,
-        test: 'yoyo'
+        loading: true,
       }
     },
     props: ['blok'],
@@ -60,6 +61,8 @@ export default {
           console.log(data);
           //console.log('Loaded stories starting with: ' this.blok.contenttype)
           this.stories = data.data.stories;
+
+          this.loading = false;
         })
       }
     },
@@ -73,6 +76,23 @@ export default {
 </script>
 
 <style lang="scss">
+  .Overview {
+    position: relative;
+  }
+
+  .Overview--loading {
+    min-height: 300px;
+    &:after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.9;
+    }
+  }
+
   .Overview--card {
     margin: 0 -($spacer/2);
     // grid-auto-rows: repeat(2, 1fr);

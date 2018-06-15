@@ -15,6 +15,7 @@ import ImageUpload from '~/components/ImageUpload.vue'
 import Overview from '~/components/Overview/Overview.vue'
 import Markdown from '~/components/Markdown.vue'
 import Icon from '@/components/Icon';
+import Spinner from '@/components/Spinner';
 
 
 Vue.component('icon', Icon)
@@ -33,3 +34,4 @@ Vue.component('spacer', Spacer)
 Vue.component('imageupload', ImageUpload)
 Vue.component('overview', Overview)
 Vue.component('markdown', Markdown)
+Vue.component('spinner', Spinner)
