@@ -35,6 +35,7 @@
   .Wrapper {
     margin: 0 auto;
     max-width: 900px;
+    padding: 0 $spacer/2;
 
     @each $key, $value in $sizes {
       &.#{$key} {
