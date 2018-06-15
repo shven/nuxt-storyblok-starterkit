@@ -51,6 +51,7 @@ export default {
       getStories: function() {
         return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
           starts_with: this.blok.contenttype,
+          is_startpage: false, // exclude start pages (fe: blog overview)
           version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
         }).then(function(result) {
           // all loaded

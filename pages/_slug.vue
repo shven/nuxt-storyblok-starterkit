@@ -37,10 +37,8 @@ export default {
   },
   asyncData (context) {
     // Load the JSON from the API
-    const slug = context.params.slug ? context.params.slug : 'home';
-
+    const slug = context.params.slug ? context.params.slug : '/home';
     return context.app.$storyapi.get(`cdn/stories/${slug}`, {
-      //version: context.version
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
     }).then((res) => {
       return res.data
@@ -50,6 +48,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-</style>

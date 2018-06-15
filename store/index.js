@@ -11,18 +11,17 @@ const store = () => {
       post: {}
     },
     actions: {
+      /*
       async nuxtServerInit ({commit}, {params}) {
         if(process.server) {
-          if (params.id) {
-            // console.log('Render: /blog/' + params.id);
-            return this.$storyapi.get(`cdn/stories/blog/${params.id}?cv=` + Date.now(), {
+          if (params.folder && params.subslug) {
+            return this.$storyapi.get(`cdn/stories/${params.folder}/${params.subslug}?cv=` + Date.now(), {
               version: 'published'
             }).then((res) => {
               commit('setPost', res.data.story)
             })
           }
           else if(params.slug) {
-            // console.log('Render: /' + params.slug);
             return this.$storyapi.get(`cdn/stories`, {
               starts_with: 'blog',
               version: 'published'
@@ -32,6 +31,7 @@ const store = () => {
           }
         }
       },
+      */
       async loadSettings ({ commit }, context) {
         return this.$storyapi.get(`cdn/stories/_settings`, {
           version: context.version

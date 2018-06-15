@@ -36,8 +36,8 @@
       }
     },
     asyncData (context) {
-      const id = context.params.id ? context.params.id : 'home';
-      return context.app.$storyapi.get(`cdn/stories/blog/${id}`, {
+      // Load the JSON from the API
+      return context.app.$storyapi.get(`cdn/stories/${context.params.folder}/${context.params.subslug}`, {
         version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       }).then((res) => {
         return res.data
@@ -47,6 +47,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-</style>
