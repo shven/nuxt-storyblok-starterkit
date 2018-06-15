@@ -21,11 +21,8 @@ const store = () => {
             })
           }
           else if(params.slug) {
-            return this.$storyapi.get(`cdn/stories`, {
-              starts_with: 'blog',
+            return this.$storyapi.get(`cdn/stories/${params.slug}?cv=` + Date.now(), {
               version: 'published'
-            }).then((res) => {
-              commit('setPosts', res.data.stories)
             })
           }
         }
