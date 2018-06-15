@@ -13,7 +13,7 @@ import Wrapper from '~/components/Wrapper.vue'
 import Spacer from '~/components/Spacer.vue'
 import ImageUpload from '~/components/ImageUpload.vue'
 import Overview from '~/components/Overview/Overview.vue'
-import Markdown from '~/components/VueMarkdown.vue'
+import Markdown from '~/components/Markdown.vue'
 
 
 Vue.component('post', Post)
