@@ -33,6 +33,7 @@
 
 <style lang="scss">
   .Wrapper {
+    position: relative;
     margin: 0 auto;
     max-width: 900px;
     padding: 0 $spacer/2;

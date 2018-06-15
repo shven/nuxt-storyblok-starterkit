@@ -1,6 +1,6 @@
 <template>
   <li class="Card">
-    <nuxt-link :key="post.full_slug" :to="post.full_slug">
+    <nuxt-link :key="post.full_slug" :to="'/' + post.full_slug">
       <article>
         <div class="Card-image"
           v-if="post.content.primaryimage"
@@ -22,11 +22,7 @@
 
 <script>
   export default {
-    props: ['post'],
-    mounted() {
-      // console.log('card mounted');
-      // console.log(this.$store.state.posts, 'posts');
-    }
+    props: ['post']
   }
 </script>
 

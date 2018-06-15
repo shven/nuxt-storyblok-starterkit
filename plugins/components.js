@@ -14,8 +14,10 @@ import Spacer from '~/components/Spacer.vue'
 import ImageUpload from '~/components/ImageUpload.vue'
 import Overview from '~/components/Overview/Overview.vue'
 import Markdown from '~/components/Markdown.vue'
+import Icon from '@/components/Icon';
 
 
+Vue.component('icon', Icon)
 Vue.component('post', Post)
 Vue.component('card', Card)
 Vue.component('brick', Brick)

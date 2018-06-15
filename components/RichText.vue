@@ -13,6 +13,3 @@
     props: ['blok']
   }
 </script>
-
-<style lang="scss">
-</style>

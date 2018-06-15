@@ -4,37 +4,28 @@
       <div class="Footer">
         <div class="Footer-left">
           <a href="https://twitter.com/designisdead" class="u-color--twitter">
-            <Icon type="twitter" />
+            <icon type="twitter" />
           </a>
           &nbsp;
           <a href="https://www.facebook.com/DesignisDead/" class="u-color--facebook">
-            <Icon type="facebook" />
+            <icon type="facebook" />
           </a>
           &nbsp;
           <a href="https://www.linkedin.com/company/design-is-dead" class="u-color--linkedin">
-            <Icon type="linkedin" />
+            <icon type="linkedin" />
           </a>
         </div>
         <div class="Footer-right">
           <span class="Footer-copyright">&copy;  2018</span>
           &nbsp;
           <span class="Footer-knuckles">
-              <Icon type="knuckles" />
+              <icon type="knuckles" />
           </span>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script>
-  import Icon from '@/components/Icon';
-
-  export default {
-    components: {
-      Icon
-    }
-  }
-</script>
 
 <style lang="scss">
   .Footer {

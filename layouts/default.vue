@@ -29,6 +29,11 @@
       PageHeader,
       PageIcons,
       PageSidebar,
+    },
+    mounted() {
+      // console.log('card mounted');
+      console.log(this.$store.state.settings.colorprimary.color, 'color');
+      document.documentElement.style.setProperty('--colorPrimary', this.$store.state.settings.colorprimary.color);
     }
   }
 </script>
@@ -46,9 +51,9 @@
   .Page-sidebar {
     position: fixed;
     height: 100vh;
-    background: black;
+    background: var(--colorPrimary);
     color: white;
-    z-index: 10;
+    z-index:  10;
     padding: 20px;
     width: $pageSidebarMinimumWidth;
     transform: translate3d(-$pageSidebarMinimumWidth, 0, 0);
@@ -60,18 +65,18 @@
     }
   }
 
-  .Page-toggle {
-    position: absolute;
+  .Page-hamburger {
     width: 30px;
     height: 30px;
-    top: 50%;
-    left: 20px;
     cursor: pointer;
     display: block;
     user-select: none;
     outline: none;
     text-indent: -999px;
-    transform: translateY(-50%);
+
+    @media screen and (min-width: size('medium')) {
+      display: none;
+    }
 
     &:after {
       content: ' ';
@@ -117,5 +122,52 @@
     z-index: 1;
     top: 0;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .Page-content {
+    position: relative;
+    z-index: 0;
+  }
+
+  .Page-headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: size('large');
+    margin: 0 auto;
+    height: 100%;
+    padding: $spacer/2;
+  }
+
+  .Navigation {
+    display: none;
+    text-align: right;
+    line-height: $pageHeaderHeight;
+    @media screen and (min-width: size('medium')) {
+      display: block;
+    }
+  }
+
+  .Navigation-link {
+    display: inline-block;
+    padding: 7px 10px;
+    margin: 0 5px;
+    text-decoration: none !important;
+    transition: 0.25s ease opacity;
+    opacity: 0.5;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-radius: 20px;
+
+    &.nuxt-link-active {
+      background: color('primary');
+      color: color('light');
+      opacity: 1;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
   }
 </style>

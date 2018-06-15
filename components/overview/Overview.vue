@@ -74,6 +74,7 @@ export default {
 
 <style lang="scss">
   .Overview--card {
+    margin: 0 -($spacer/2);
     // grid-auto-rows: repeat(2, 1fr);
     @media screen and (min-width: size('medium')) {
       display: grid;

@@ -31,6 +31,8 @@ body {
   font: #{$font-size} / 1 $font-primary;
   overflow-x: hidden;
   color: color('dark');
+
+  --colorPrimary: #000;
 }
 
 button {
