@@ -4,19 +4,14 @@
       :style="{backgroundImage: 'url(' + blok.image + ')'}">
     </div>
     <div class="Teaser-content">
-      <vue-markdown>{{ blok.text }}</vue-markdown>
+      <markdown>{{ blok.text }}</markdown>
     </div>
   </div>
 </template>
 
 <script>
-  import VueMarkdown from 'vue-markdown';
-
   export default {
-    props: ['blok'],
-    components: {
-      VueMarkdown
-    }
+    props: ['blok']
   }
 </script>
 

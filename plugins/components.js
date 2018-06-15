@@ -1,5 +1,4 @@
 import Vue from 'vue'
-
 import Page from '~/components/Page.vue'
 import Post from '~/components/Post.vue'
 import Brick from '~/components/overview/Brick.vue'
@@ -14,6 +13,7 @@ import Wrapper from '~/components/Wrapper.vue'
 import Spacer from '~/components/Spacer.vue'
 import ImageUpload from '~/components/ImageUpload.vue'
 import Overview from '~/components/Overview/Overview.vue'
+import Markdown from '~/components/VueMarkdown.vue'
 
 
 Vue.component('post', Post)
@@ -30,3 +30,4 @@ Vue.component('wrapper', Wrapper)
 Vue.component('spacer', Spacer)
 Vue.component('imageupload', ImageUpload)
 Vue.component('overview', Overview)
+Vue.component('markdown', Markdown)

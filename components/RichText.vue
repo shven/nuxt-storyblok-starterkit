@@ -4,18 +4,13 @@
       'u-textAlignCenter' : blok.textalignment == 'center',
       'u-textAlignRight' : blok.textalignment == 'right'
     }">
-      <vue-markdown>{{ blok.richtext }}</vue-markdown>
+      <markdown>{{ blok.richtext }}</markdown>
   </div>
 </template>
 
 <script>
-  import VueMarkdown from 'vue-markdown';
-
   export default {
-    props: ['blok'],
-    components: {
-      VueMarkdown
-    }
+    props: ['blok']
   }
 </script>
 
