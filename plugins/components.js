@@ -7,7 +7,8 @@ import List from '~/components/overview/List.vue'
 import Hero from '~/components/Hero.vue'
 import Teaser from '~/components/Teaser.vue'
 import RichText from '~/components/RichText.vue'
-import Grid from '~/components/Grid.vue'
+import Columns from '~/components/Columns.vue'
+import Column from '~/components/Column.vue'
 import Feature from '~/components/Feature.vue'
 import Wrapper from '~/components/Wrapper.vue'
 import Spacer from '~/components/Spacer.vue'
@@ -27,7 +28,8 @@ Vue.component('page', Page)
 Vue.component('teaser', Teaser)
 Vue.component('richtext', RichText)
 Vue.component('hero', Hero)
-Vue.component('grid', Grid)
+Vue.component('columns', Columns)
+Vue.component('column', Column)
 Vue.component('feature', Feature)
 Vue.component('wrapper', Wrapper)
 Vue.component('spacer', Spacer)

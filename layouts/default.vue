@@ -311,6 +311,7 @@
   }
 
   .Navigation-link {
+    font-weight: bold;
     display: inline-block;
     padding: 7px 10px;
     margin: 0 5px;
