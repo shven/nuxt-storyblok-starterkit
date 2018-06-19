@@ -1,5 +1,5 @@
 <template>
-  <div class="Image">
+  <div class="Image" v-editable="blok">
     <img
       :src="blok.image"
       :width="blok.width"
