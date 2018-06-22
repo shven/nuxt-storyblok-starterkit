@@ -1,10 +1,12 @@
 <template>
   <div class="Spinner" :class="{'Spinner--loading': loading}">
     <slot></slot>
-    <ssr>
-      <div class="Spinner-overlay" v-if="loading"></div>
-      <div class="Spinner-icon" v-if="loading"></div>
-    </ssr>
+    <no-ssr>
+      <div class="Spinner-wrapper">
+        <div class="Spinner-overlay" v-if="loading"></div>
+        <div class="Spinner-icon" v-if="loading"></div>
+      </div>
+    </no-ssr>
   </div>
 </template>
 
@@ -22,6 +24,15 @@
 <style lang="scss">
   .Spinner {
     position: relative;
+  }
+
+  .Spinner-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
   }
 
   .Spinner--loading {
