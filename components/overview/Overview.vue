@@ -5,16 +5,17 @@
       <masonry v-if="blok.listtype == 'masonry'"
         :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
         :gutter="0">
-        <div v-for="(post, index) in stories" :key="index">
-          <brick
-            :key="post.full_slug"
-            :post="post"
-            :name="post.name"
-            :author="post.content.author"
-            :published="post.content.published"
-            :primaryimage="post.content.primaryimage"
-            :slug="post.full_slug" />
-        </div>
+          <div v-for="(post, index) in blok.overviewcontent" :key="index">
+            <brick
+              :key="post.full_slug"
+              :post="post"
+              :name="post.name"
+              :author="post.content.author"
+              :published="post.content.published"
+              :primaryimage="post.content.primaryimage"
+              :secondaryimage="post.content.secondaryimage"
+              :slug="post.full_slug" />
+          </div>
       </masonry>
 
       <!-- else -->
@@ -22,7 +23,7 @@
           v-else
           :class="['Overview--' + blok.listtype]">
         <component
-          v-for="post in stories"
+          v-for="post in blok.overviewcontent"
           :key="post.full_slug"
           :post="post"
           :is="blok.listtype" />
@@ -46,22 +47,14 @@ export default {
       }
     },
     methods: {
-      getDummyText: function() {
-        return 'dummy text'
-      },
       getStories: function() {
         return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
           starts_with: this.blok.contenttype,
           is_startpage: false, // exclude start pages (fe: blog overview)
           version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
-        }).then(function(result) {
-          // all loaded
-          return result;
         }).then(data => {
-          console.log(data);
           //console.log('Loaded stories starting with: ' this.blok.contenttype)
           this.stories = data.data.stories;
-
           this.loading = false;
         })
       }
@@ -69,7 +62,6 @@ export default {
     mounted() {
       this.$nextTick(() => {
         this.stories = this.getStories()
-        this.test = this.getDummyText()
       })
     }
   }

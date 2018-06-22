@@ -1,8 +1,6 @@
 <template>
   <div>
-    <template v-for="post in Posts">
-        <nuxt-link class="card" :key="post.id" :to="'/blog/'+post.slug">{{post.name}}</nuxt-link>
-    </template>
+    {{ $store.state.posts }}
   </div>
 </template>
 
@@ -13,7 +11,7 @@
         title: 'Posts Listing'
       }
     },
-    fetch ({store}) {
+    async fetch ({store}) {
       store.dispatch('getPosts')
     },
     computed: {
