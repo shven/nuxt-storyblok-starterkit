@@ -1,8 +1,10 @@
 <template>
   <div class="Spinner" :class="{'Spinner--loading': loading}">
     <slot></slot>
-    <div class="Spinner-overlay" v-if="loading"></div>
-    <div class="Spinner-icon" v-if="loading"></div>
+    <ssr>
+      <div class="Spinner-overlay" v-if="loading"></div>
+      <div class="Spinner-icon" v-if="loading"></div>
+    </ssr>
   </div>
 </template>
 
