@@ -5,16 +5,8 @@
       <masonry v-if="blok.listtype == 'masonry'"
         :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
         :gutter="0">
-          <div v-for="(post, index) in blok.overviewcontent" :key="index">
-            <brick
-              :key="post.full_slug"
-              :post="post"
-              :name="post.name"
-              :author="post.content.author"
-              :published="post.content.published"
-              :primaryimage="post.content.primaryimage"
-              :secondaryimage="post.content.secondaryimage"
-              :slug="post.full_slug" />
+          <div v-for="(post, index) in stories" :key="index">
+            <brick :post="post" />
           </div>
       </masonry>
 
@@ -38,7 +30,7 @@ import moment from 'moment';
 export default {
     data () {
       return {
-        stories: [] ,
+        stories: this.blok.overviewcontent,
         loading: true,
       }
     },
