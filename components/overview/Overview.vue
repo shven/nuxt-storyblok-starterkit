@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
     data () {
       return {
@@ -48,7 +50,7 @@ export default {
     },
     methods: {
       getStories: function() {
-        return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
+        return this.$storyapi.get(`cdn/stories?cv=` + moment().format('YYYYMMDDHHmm'), {
           starts_with: this.blok.contenttype,
           is_startpage: false, // exclude start pages (fe: blog overview)
           version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',

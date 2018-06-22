@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import moment from 'moment';
+
   export default {
     data () {
       return { story: { content: {} } }
@@ -38,6 +40,7 @@
     asyncData (context) {
       // Load the JSON from the API
       return context.app.$storyapi.get(`cdn/stories/${context.params.folder}/${context.params.subslug}`, {
+        cv: moment().format('YYYYMMDDHHmm'),
         version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       }).then((res) => {
         return res.data

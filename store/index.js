@@ -1,4 +1,5 @@
-import Vuex from 'vuex'
+import Vuex from 'vuex';
+import moment from 'moment';
 
 const store = () => {
   return new Vuex.Store({
@@ -29,13 +30,15 @@ const store = () => {
       },
       async loadSettings ({ commit }, context) {
         return this.$storyapi.get(`cdn/stories/_settings`, {
+          cv: moment().format('YYYYMMDDHHmm'),
           version: context.version
         }).then((res) => {
           commit('setSettings', res.data.story.content)
         })
       },
       async getEmployees ({commit}) {
-        return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
+        return this.$storyapi.get('cdn/stories', {
+          cv: moment().format('YYYYMMDDHHmm'),
           starts_with: '_employees/',
           version: 'draft'
         }).then((res) => {
@@ -43,7 +46,8 @@ const store = () => {
         })
       },
       async getPosts ({commit}) {
-        return this.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
+        return this.$storyapi.get('cdn/stories', {
+          cv: moment().format('YYYYMMDDHHmm'),
           starts_with: 'blog/',
           version: 'draft'
         }).then((res) => {
@@ -51,7 +55,8 @@ const store = () => {
         })
       },
       async getPost ({commit}, id) {
-        const post = await this.$storyapi.get(`cdn/stories/blog/${id}?cv=` + Date.now(), {
+        const post = await this.$storyapi.get('cdn/stories/blog/${id}', {
+          cv: moment().format('YYYYMMDDHHmm'),
           version: 'published'
         })
         commit('setPost', post.data.story)

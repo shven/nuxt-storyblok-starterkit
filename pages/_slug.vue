@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   data () {
     return {
@@ -45,12 +47,13 @@ export default {
      * Get data for overview components
      */
     async function getOverviewContent(overviewObject) {
-      return await context.app.$storyapi.get(`cdn/stories?cv=` + Date.now(), {
+      return await context.app.$storyapi.get('cdn/stories' , {
+        cv: moment().format('YYYYMMDDHHmm'),
         starts_with: overviewObject.contenttype,
         is_startpage: false, // exclude start pages (fe: blog overview)
         version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       }).then(data => {
-        console.log('Get overview content for ' + overviewObject.contenttype);
+        console.log(`${moment().format('YYYYMMDDHHmm')}: Get overview content for ${overviewObject.contenttype}`);
         return data.data.stories;
       });
     }
@@ -77,6 +80,7 @@ export default {
     // Load page slug from the API
     const slug = context.params.slug ? context.params.slug : '/home';
     let page = await context.app.$storyapi.get(`cdn/stories/${slug}`, {
+      cv: moment().format('YYYYMMDDHHmm'),
       version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
     }).then((res) => {
       return res.data
