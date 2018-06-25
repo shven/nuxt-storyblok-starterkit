@@ -144,8 +144,6 @@
 <script>
   export default {
     mounted() {
-      // console.log('card mounted');
-      console.log(this.$store.state.settings.colorprimary.color, 'color');
       document.documentElement.style.setProperty('--colorPrimary', this.$store.state.settings.colorprimary.color);
     },
     methods: {

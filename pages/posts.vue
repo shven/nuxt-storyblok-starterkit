@@ -1,7 +1,7 @@
 <template>
-  <div>
-    {{ $store.state.posts }}
-  </div>
+  <pre>
+    {{ Posts }}
+  </pre>
 </template>
 
 <script>
@@ -12,7 +12,7 @@
       }
     },
     async fetch ({store}) {
-      store.dispatch('getPosts')
+      await store.dispatch('getPosts')
     },
     computed: {
       Posts () {

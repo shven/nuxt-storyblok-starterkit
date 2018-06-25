@@ -18,10 +18,6 @@
 <script>
   export default {
     props: ['post'],
-    mounted() {
-      // console.log('card mounted');
-      console.log(this.$store.state.settings.colorprimary.color, 'settings');
-    }
   }
 </script>
 

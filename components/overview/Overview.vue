@@ -48,7 +48,6 @@ export default {
           is_startpage: false, // exclude start pages (fe: blog overview)
           version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
         }).then(data => {
-          //console.log('Loaded stories starting with: ' this.blok.contenttype)
           this.stories = data.data.stories;
           this.loading = false;
         })
