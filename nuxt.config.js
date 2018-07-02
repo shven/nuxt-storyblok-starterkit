@@ -9,6 +9,7 @@ module.exports = {
     { src: '~/plugins/components'},
     { src: '~/plugins/masonry'},
     { src: '~/plugins/imageApi'},
+    { src: '~/plugins/lazyLoad'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
   router: {

@@ -1,20 +1,11 @@
 <template>
   <section class="Hero"
     v-editable="blok"
-    :style="{backgroundImage: 'url(' + $options.filters.imageApi(blok.image, 'nano') + ')'}"
-    :class="{
-      'tiny': blok.size == 'tiny',
-      'small': blok.size == 'small',
-      'medium': blok.size == 'medium',
-      'large': blok.size == 'large',
-      'huge': blok.size == 'huge',
-      'fullscreen': blok.size == 'fullscreen',
-    }">
+    v-lazy:background-image="$options.filters.imageApi(blok.image, 'large')"
+    :class="[blok.size]">
     <div class="Hero-content u-color--light u-textAlignCenter">
       <!-- Hero content starts here -->
       <div class="Wrapper medium">
-        <h5>{{ background }}</h5>
-        <h5>{{ blok.image | imageApi('small') }}</h5>
         <markdown>{{ blok.headline }}</markdown>
       </div>
       <!-- Hero content ends here -->

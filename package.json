@@ -18,6 +18,7 @@
     "nuxt": "^1.0.0",
     "nuxt-sass-resources-loader": "^2.0.0",
     "storyblok-nuxt": "0.0.3",
+    "vue-lazyload": "^1.2.6",
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
