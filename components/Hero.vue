@@ -1,7 +1,7 @@
 <template>
   <section class="Hero"
     v-editable="blok"
-    :style="{backgroundImage: 'url(' + blok.image + ')'}"
+    :style="{backgroundImage: 'url(' + $options.filters.imageApi(blok.image, 'nano') + ')'}"
     :class="{
       'tiny': blok.size == 'tiny',
       'small': blok.size == 'small',
@@ -13,6 +13,8 @@
     <div class="Hero-content u-color--light u-textAlignCenter">
       <!-- Hero content starts here -->
       <div class="Wrapper medium">
+        <h5>{{ background }}</h5>
+        <h5>{{ blok.image | imageApi('small') }}</h5>
         <markdown>{{ blok.headline }}</markdown>
       </div>
       <!-- Hero content ends here -->
@@ -22,7 +24,12 @@
 
 <script>
   export default {
-    props: ['blok']
+    props: ['blok'],
+    computed: {
+      background() {
+        return this.blok.image;
+      }
+    }
   }
 </script>
 

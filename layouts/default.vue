@@ -202,7 +202,7 @@
   .Page-sidebarContent {
     display: flex;
     height: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-start;
     flex-direction: column;
     padding-top: 50px;

@@ -3,13 +3,13 @@
     <article>
       <header class="Brick-content">
         <div class="Brick-profileImage" v-if="post.content.secondaryimage">
-          <img :src="post.content.secondaryimage" alt="post.name" />
+          <img :src="post.content.secondaryimage | imageApi('tiny')" alt="post.name" />
         </div>
         <h1 class="medium noSpaceBelow u-color--light">{{ post.name }}</h1>
         <h2 class="small noSpaceBelow u-color--light" v-if="post.content.jobtitle">{{ post.content.jobtitle }}</h2>
       </header>
       <div class="Brick-backgroundImage" v-if="post.content.primaryimage">
-        <img class="Brick-backgroundImage" :src="post.content.primaryimage" />
+        <img class="Brick-backgroundImage" :src="post.content.primaryimage | imageApi('nano')" />
       </div>
     </article>
   </li>

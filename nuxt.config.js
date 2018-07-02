@@ -8,6 +8,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/components'},
     { src: '~/plugins/masonry'},
+    { src: '~/plugins/imageApi'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
   router: {
