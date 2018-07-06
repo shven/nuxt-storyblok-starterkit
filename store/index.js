@@ -16,14 +16,14 @@ const store = () => {
         if(process.server) {
           if (params.folder && params.subslug) {
             return this.$storyapi.get(`cdn/stories/${params.folder}/${params.subslug}?cv=` + Date.now(), {
-              version: 'published'
+              version: process.env.NODE_ENV == 'production' ? 'published' : 'draft'
             }).then((res) => {
               commit('setPost', res.data.story)
             })
           }
           else if(params.slug) {
             return this.$storyapi.get(`cdn/stories/${params.slug}?cv=` + Date.now(), {
-              version: 'published'
+              version: process.env.NODE_ENV == 'production' ? 'published' : 'draft'
             })
           }
         }

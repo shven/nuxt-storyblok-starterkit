@@ -21,7 +21,7 @@
 .Spacer {
   @each $key, $value in $sizes {
     &.#{$key} {
-      padding: ceil($value/30);
+      padding: ceil($value/20);
     }
   }
 }

@@ -322,8 +322,6 @@
     border-radius: 20px;
 
     &.nuxt-link-active {
-      background: color('primary');
-      color: color('light');
       opacity: 1;
     }
 
