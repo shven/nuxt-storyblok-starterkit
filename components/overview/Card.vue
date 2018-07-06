@@ -4,7 +4,7 @@
       <article>
         <div class="Card-image"
           v-if="post.content.primaryimage"
-          :style="{backgroundImage: 'url(' + post.content.primaryimage + ')'}">
+          v-lazy:background-image="$options.filters.imageApi(post.content.primaryimage, 'small')">
         </div>
         <div class="Card-content">
           <header class="Card-header">

@@ -1,7 +1,6 @@
 <template>
   <section class="Hero"
     v-editable="blok"
-    v-lazy:background-image="$options.filters.imageApi(blok.image, 'large')"
     :class="[blok.size]">
     <div class="Hero-content u-color--light u-textAlignCenter">
       <!-- Hero content starts here -->
@@ -10,6 +9,10 @@
       </div>
       <!-- Hero content ends here -->
     </div>
+    <div class="Hero-backgroundImage"
+         v-lazy:background-image="$options.filters.imageApi(blok.image, 'large')"
+         v-if="blok.image"
+    ></div>
   </section>
 </template>
 
@@ -26,11 +29,10 @@
 
 <style lang="scss">
   .Hero {
+    position: relative;
     height: 50vw;
     max-height: 80vh;
     display: flex;
-    background-size: cover;
-    background-position: center center;
     &.tiny {
       height: 10vh;
     }
@@ -53,6 +55,8 @@
   }
 
   .Hero-content {
+    position: relative;
+    z-index: 1;
     flex: 1;
     align-self: center;
     padding: 0 $spacer/4;
@@ -82,5 +86,15 @@
         font-size: 50px;
       }
     }
+  }
+
+  .Hero-backgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center center;
   }
 </style>

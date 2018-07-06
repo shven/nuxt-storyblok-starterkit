@@ -1,7 +1,6 @@
 <template>
   <div class="Teaser" v-editable="blok">
     <div class="Teaser-image"
-         :style="{backgroundImage: 'url(' + $options.filters.imageApi(blok.image, 'nano') + ')'}"
          v-lazy:background-image="$options.filters.imageApi(blok.image, 'large')">
     </div>
     <div class="Teaser-content">
