@@ -3,6 +3,7 @@
     <img
       :src="blok.image"
       :width="blok.width"
+      :alt="blok.alt"
       :class="{
        'u-centered' : blok.alignment == 'center',
        'u-floatRight' : blok.alignment == 'right',
