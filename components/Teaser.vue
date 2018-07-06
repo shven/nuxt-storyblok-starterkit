@@ -36,8 +36,8 @@
     position: relative;
     background: color('dark') center center / cover;
     width: 100%;
-    height: 150px;
-    margin-bottom: 40px;
+    height: 200px;
+    margin-bottom: $spacer/2;
 
     @media screen and (min-width: size('medium')) {
       width: 50%;

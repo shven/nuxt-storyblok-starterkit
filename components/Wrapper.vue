@@ -1,16 +1,17 @@
 <template>
   <div class=""
     v-editable="blok">
-    <div class="Wrapper"
-      :class="{
-         'tiny': blok.size == 'tiny',
-         'small': blok.size == 'small',
-         'medium': blok.size == 'medium',
-         'large': blok.size == 'large',
-         'huge': blok.size == 'huge',
-      }">
-      <div class="Wrapper-content">
+    <div class="Wrapper">
+      <div class="Wrapper-content"
+        :class="{
+          'tiny': blok.size == 'tiny',
+          'small': blok.size == 'small',
+          'medium': blok.size == 'medium',
+          'large': blok.size == 'large',
+          'huge': blok.size == 'huge',
+        }">
         <component :key="blok._uid" v-for="blok in blok.elements" :blok="blok" :is="blok.component"></component>
+        <slot></slot>
       </div>
       <div class="Wrapper-background"
         v-if="blok.backgroundimage"
@@ -45,7 +46,6 @@
   .Wrapper-content {
     position: relative;
     margin: 0 auto;
-    max-width: 900px;
     padding: 0 $spacer/2;
     z-index: 1;
 
