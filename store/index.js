@@ -1,6 +1,8 @@
 import Vuex from 'vuex';
 import moment from 'moment';
 
+import storyblokSettings from '~/plugins/storyblokSettings';
+
 const store = () => {
   return new Vuex.Store({
     state: {
@@ -16,48 +18,50 @@ const store = () => {
         if(process.server) {
           if (params.folder && params.subslug) {
             return this.$storyapi.get(`cdn/stories/${params.folder}/${params.subslug}?cv=` + Date.now(), {
-              version: process.env.NODE_ENV == 'production' ? 'published' : 'draft'
+              version: storyblokSettings.version
             }).then((res) => {
               commit('setPost', res.data.story)
             })
           }
           else if(params.slug) {
             return this.$storyapi.get(`cdn/stories/${params.slug}?cv=` + Date.now(), {
-              version: process.env.NODE_ENV == 'production' ? 'published' : 'draft'
+              version: storyblokSettings.version
             })
           }
         }
       },
-      async loadSettings ({ commit }, context) {
+      async loadSettings ({ commit }) {
         return this.$storyapi.get(`cdn/stories/_settings`, {
-          cv: moment().format('YYYYMMDDHHmm'),
-          version: context.version
+          cv: storyblokSettings.cv,
+          version: storyblokSettings.version
         }).then((res) => {
           commit('setSettings', res.data.story.content)
         })
       },
       async getEmployees ({commit}) {
         return this.$storyapi.get('cdn/stories', {
-          cv: moment().format('YYYYMMDDHHmm'),
+          cv: storyblokSettings.cv,
           starts_with: '_employees/',
-          version: 'draft'
+          version: storyblokSettings.version
         }).then((res) => {
+          console.log(res.data.stories);
           commit('setEmployees', res.data.stories)
         })
       },
       async getPosts ({commit}) {
         return this.$storyapi.get('cdn/stories', {
-          cv: moment().format('YYYYMMDDHHmm'),
+          cv: storyblokSettings.cv,
           starts_with: 'blog/',
           version: 'draft'
         }).then((res) => {
           commit('setPosts', res.data.stories)
         })
       },
+
       async getPost ({commit}, id) {
         const post = await this.$storyapi.get('cdn/stories/blog/${id}', {
-          cv: moment().format('YYYYMMDDHHmm'),
-          version: 'published'
+          cv: storyblokSettings.cv,
+          version: storyblokSettings.version
         })
         commit('setPost', post.data.story)
       },
@@ -67,6 +71,7 @@ const store = () => {
         state.settings = settings
       },
       setEmployees: (state, posts) => {
+        console.log('SET EMPLOYEES')
         state.employees = posts
       },
       setPosts: (state, posts) => {

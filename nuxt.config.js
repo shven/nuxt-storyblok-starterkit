@@ -10,10 +10,11 @@ module.exports = {
     { src: '~/plugins/masonry'},
     { src: '~/plugins/imageApi'},
     { src: '~/plugins/lazyLoad'},
+    { src: '~/plugins/storyblokSettings'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
   router: {
-    middleware: 'settings',
+    middleware: ['settings', 'employees'],
     base: '/nuxt-storyblok-starterkit/'
   },
   /*

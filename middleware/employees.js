@@ -1,3 +1,3 @@
 export default function ({ store }) {
-  return store.dispatch('loadSettings')
+  return store.dispatch('getEmployees')
 }

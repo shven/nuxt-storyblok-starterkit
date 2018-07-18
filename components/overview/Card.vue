@@ -9,8 +9,8 @@
         <div class="Card-content">
           <header class="Card-header">
             <h2 class="tiny">
-              <span v-if="post.content.published">Posted on {{ post.content.published }} </span>
-              <span v-if="post.content.author">by {{ post.content.author }}</span>
+              <span v-if="post.content.published">Posted <time :datetime="dataTime">{{ fromNow }}</time></span><br />
+              <author v-if="post.content.author" :uuid="post.content.author"></author>
             </h2>
             <h1 class="medium">{{ post.name }}</h1>
           </header>
@@ -21,8 +21,18 @@
 </template>
 
 <script>
+  import moment from 'moment';
+
   export default {
-    props: ['post']
+    props: ['post'],
+    computed: {
+      dataTime() {
+        return moment(this.post.content.published).format('YYYY-MM-DD HH:mm');
+      },
+      fromNow() {
+        return moment(this.post.content.published).fromNow();
+      }
+    }
   }
 </script>
 
@@ -30,7 +40,7 @@
 
   .Card {
     background: white;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.025);
     padding: 0;
     margin: 0 $spacer/2 $spacer;
     list-style-type: none;

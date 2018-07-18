@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Page from '~/components/Page.vue'
+import Author from '~/components/Author.vue'
 import Post from '~/components/Post.vue'
 import Brick from '~/components/overview/Brick.vue'
 import Card from '~/components/overview/Card.vue'
@@ -21,6 +22,7 @@ import Buttons from '@/components/Buttons.vue';
 import Button from '@/components/Button.vue';
 
 
+Vue.component('author', Author)
 Vue.component('icon', Icon)
 Vue.component('post', Post)
 Vue.component('card', Card)

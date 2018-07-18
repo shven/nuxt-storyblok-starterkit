@@ -10,6 +10,7 @@
 
 <script>
 import moment from 'moment';
+import storyblokSettings from '~/plugins/storyblokSettings';
 
 export default {
   data () {
@@ -47,11 +48,16 @@ export default {
      * Get data for overview components
      */
     async function getOverviewContent(overviewObject) {
+      console.log('overviewObject');
+      console.log(overviewObject);
       return await context.app.$storyapi.get('cdn/stories' , {
-        cv: moment().format('YYYYMMDDHHmm'),
+        version: storyblokSettings.version,
+        cv: Date.now(), // storyblokSettings.cv,
         starts_with: overviewObject.contenttype,
+        sort_by: overviewObject.sortby ? overviewObject.sortby : 'created_at:desc',
+        per_page: overviewObject.perpage ? overviewObject.perpage : '50',
+        page: '1',
         is_startpage: false, // exclude start pages (fe: blog overview)
-        version: process.env.NODE_ENV == 'production' ? 'published' : 'draft',
       }).then(data => {
         console.log(`${moment().format('YYYYMMDDHHmm')}: Get overview content for ${overviewObject.contenttype}`);
         return data.data.stories;
