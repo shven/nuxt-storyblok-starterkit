@@ -43,7 +43,7 @@
           </main>
         </div>
         <div class="Page-footer">
-          <wrapper blok="{size: 'tiny'}">
+          <wrapper size="large">
             <div class="Footer">
               <div class="Footer-left">
                 <a href="https://twitter.com/designisdead" class="u-color--twitter">

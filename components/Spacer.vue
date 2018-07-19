@@ -1,19 +1,24 @@
 <template>
   <div class="Spacer"
-    v-editable="blok"
-    v-bind:class="{
-      'tiny' : blok.size == 'tiny',
-      'small' : blok.size == 'small',
-      'medium' : blok.size == 'medium',
-      'large' : blok.size == 'large',
-      'huge' : blok.size == 'huge',
-    }">
+    v-editable="Blok"
+    v-bind:class="[Size]">
   </div>
 </template>
 
 <script>
   export default {
-    props: ['blok']
+    props: {
+      blok: Object,
+      size: String
+    },
+    computed: {
+      Blok() {
+        return this.blok || {};
+      },
+      Size() {
+        return this.size || this.blok.size;
+      }
+    }
   }
 </script>
 

@@ -1,30 +1,23 @@
 <template>
   <div class=""
-    v-editable="blok">
+    v-editable="Blok">
     <div class="Wrapper">
-      <div class="Wrapper-content"
-        :class="{
-          'tiny': blok.size == 'tiny',
-          'small': blok.size == 'small',
-          'medium': blok.size == 'medium',
-          'large': blok.size == 'large',
-          'huge': blok.size == 'huge',
-        }">
-        <component :key="blok._uid" v-for="blok in blok.elements" :blok="blok" :is="blok.component"></component>
+      <div class="Wrapper-content" :class="[Size]">
+        <component :key="Blok._uid" v-for="Blok in Blok.elements" :blok="Blok" :is="Blok.component"></component>
         <slot></slot>
       </div>
       <div class="Wrapper-background"
-        v-if="blok.backgroundimage"
-        v-lazy:background-image="$options.filters.imageApi(blok.backgroundimage, 'large')"
+        v-if="Blok.backgroundimage"
+        v-lazy:background-image="$options.filters.imageApi(Blok.backgroundimage, 'large')"
         :style="{
-          backgroundColor: blok.backgroundcolor.color,
+          backgroundColor: Blok.backgroundcolor.color,
         }"
         :class="{
-          'u-backgroundTopRight': blok.backgroundposition == 'top right',
-          'u-backgroundCenterCenter': blok.backgroundposition == 'center center',
-          'u-backgroundTopLeft': blok.backgroundposition == 'top left',
-          'u-backgroundSizeCover': blok.backgroundsize == 'cover',
-          'u-backgroundSizeContain': blok.backgroundsize == 'contain',
+          'u-backgroundTopRight': Blok.backgroundposition == 'top right',
+          'u-backgroundCenterCenter': Blok.backgroundposition == 'center center',
+          'u-backgroundTopLeft': Blok.backgroundposition == 'top left',
+          'u-backgroundSizeCover': Blok.backgroundsize == 'cover',
+          'u-backgroundSizeContain': Blok.backgroundsize == 'contain',
         }">
       </div>
     </div>
@@ -33,7 +26,18 @@
 
 <script>
   export default {
-    props: ['blok']
+    props: {
+      blok: Object,
+      size: String
+    },
+    computed: {
+      Blok() {
+        return this.blok || {};
+      },
+      Size() {
+        return this.size || this.blok.size;
+      }
+    }
   }
 </script>
 

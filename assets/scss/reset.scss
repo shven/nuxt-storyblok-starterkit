@@ -142,3 +142,11 @@ h4 {
 h5 {
   font-size: 0.75rem;
 }
+
+.Image {
+  display: block;
+  height: auto;
+  &.stretch {
+    width: 100%;
+  }
+}
