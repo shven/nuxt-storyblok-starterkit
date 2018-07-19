@@ -7,7 +7,7 @@ This component is used to render the Post content type on Storyblok
     <article>
       <header class="Wrapper u-textAlignCenter u-backgroundColor--light">
         <spacer size="medium"></spacer>
-        <h1>{{ blok.title }}</h1>
+        <h1>{{ pagetitle }}</h1>
         <div class="Title tiny uppercase" v-if="blok.published">
           <small>Posted <time :datetime="dataTime">{{ fromNow }}</time> by <em><author v-if="blok.author" :uuid="blok.author"></author></em></small>
         </div>
@@ -30,7 +30,10 @@ This component is used to render the Post content type on Storyblok
 <script>
   import moment from 'moment';
   export default {
-    props: ['blok'],
+    props: {
+      blok: Object,
+      pagetitle: String
+    },
     computed: {
       dataTime() {
         return moment(this.blok.published).format('YYYY-MM-DD HH:mm');

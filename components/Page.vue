@@ -11,6 +11,9 @@ This component is used to render the Page content type on Storyblok
 
 <script>
   export default {
-    props: ['blok']
+    props: {
+      blok: Object,
+      pagetitle: String
+    },
   }
 </script>

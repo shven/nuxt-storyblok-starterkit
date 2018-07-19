@@ -3,6 +3,7 @@
     <component
       v-if="story.content.component"
       :key="story.content._uid"
+      :pagetitle="story.name"
       :blok="story.content"
       :is="story.content.component" />
   </section>
