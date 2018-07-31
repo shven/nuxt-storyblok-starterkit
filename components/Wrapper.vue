@@ -1,7 +1,6 @@
 <template>
-  <div class=""
-    v-editable="Blok">
-    <div class="Wrapper">
+  <div v-editable="Blok">
+    <div class="Wrapper" :class="[Blok.backgroundcolor, Blok.textcolor]">
       <div class="Wrapper-content" :class="[Size]">
         <component :key="Blok._uid" v-for="Blok in Blok.elements" :blok="Blok" :is="Blok.component"></component>
         <slot></slot>
@@ -9,9 +8,6 @@
       <div class="Wrapper-background"
         v-if="Blok.backgroundimage"
         v-lazy:background-image="$options.filters.imageApi(Blok.backgroundimage, 'large')"
-        :style="{
-          backgroundColor: Blok.backgroundcolor.color,
-        }"
         :class="{
           'u-backgroundTopRight': Blok.backgroundposition == 'top right',
           'u-backgroundCenterCenter': Blok.backgroundposition == 'center center',
