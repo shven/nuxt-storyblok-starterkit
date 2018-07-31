@@ -12,8 +12,11 @@
     computed: {
       Author() {
         return this.$store.state.employees.find((employee) => {
-          return employee.uuid == this.uuid;
+          return employee.id == this.uuid;
         });
+      },
+      Employees() {
+        return this.$store.state.employees;
       }
     }
   }

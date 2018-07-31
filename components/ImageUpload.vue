@@ -7,6 +7,7 @@
       :class="{
        'u-centered' : blok.alignment == 'center',
        'u-floatRight' : blok.alignment == 'right',
+       'ImageUpload--stretched' : !blok.width
       }"
     />
   </div>
@@ -23,5 +24,10 @@
     content: "";
     clear: both;
     display: table;
+  }
+
+  .ImageUpload--stretched {
+    max-width: 100%;
+    display: block;
   }
 </style>

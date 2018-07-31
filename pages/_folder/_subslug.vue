@@ -34,7 +34,11 @@
             hid: `description`,
             name: 'description',
             content: story.content.metadescription
-          }
+          }, {
+            hid: 'canonical',
+            name: 'canonical',
+            content: 'https://www.designisdead.com' + this.$route.path
+          },
         ]
       }
     },
