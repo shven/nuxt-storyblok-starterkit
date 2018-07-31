@@ -29,5 +29,6 @@
   .ImageUpload--stretched {
     max-width: 100%;
     display: block;
+    margin-bottom: $spacer;
   }
 </style>
