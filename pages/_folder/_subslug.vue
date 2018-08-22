@@ -11,6 +11,7 @@
 
 <script>
   import moment from 'moment';
+  import highlightjs from 'highlightjs';
 
   export default {
     data () {
@@ -24,6 +25,9 @@
       this.$storyblok.on('published', () => {
         location.reload(true)
       })
+
+      // syntax highlighting for blogposts
+      highlightjs.initHighlighting();
     },
     head () {
       let story = this.story
