@@ -143,9 +143,6 @@
 
 <script>
   export default {
-    mounted() {
-      document.documentElement.style.setProperty('--colorPrimary', this.$store.state.settings.colorprimary.color);
-    },
     methods: {
       toggle() {
         document.getElementById('page-sidebarstate').checked = false;

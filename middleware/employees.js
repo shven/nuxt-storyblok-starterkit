@@ -1,3 +1,5 @@
 export default function ({ store }) {
-  return store.dispatch('getEmployees')
+  if(!store.state.employees) {
+    return store.dispatch('getEmployees')
+  }
 }

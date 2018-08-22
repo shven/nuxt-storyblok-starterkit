@@ -57,7 +57,7 @@ export default {
       console.log(overviewObject);
       return await context.app.$storyapi.get('cdn/stories' , {
         version: storyblokSettings.version,
-        cv: Date.now(), // storyblokSettings.cv,
+        cv: storyblokSettings.cv,
         starts_with: overviewObject.contenttype,
         sort_by: overviewObject.sortby ? overviewObject.sortby : 'created_at:desc',
         per_page: overviewObject.perpage ? overviewObject.perpage : '50',

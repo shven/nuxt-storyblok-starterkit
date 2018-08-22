@@ -10,7 +10,7 @@
           <header class="Card-header">
             <h2 class="tiny">
               <span v-if="post.content.published">Posted <time :datetime="dataTime">{{ fromNow }}</time></span><br />
-              <author v-if="post.content.author" :uuid="post.content.author"></author>
+              <author v-if="post.content.author" :id="post.content.author"></author>
             </h2>
             <h1 class="medium">{{ post.name }}</h1>
           </header>
@@ -40,7 +40,7 @@
 
   .Card {
     background: white;
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.025);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
     padding: 0;
     margin: 0 $spacer/2 $spacer;
     list-style-type: none;

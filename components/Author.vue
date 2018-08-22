@@ -7,16 +7,13 @@
 <script>
   export default {
     props: {
-      uuid: String,
+      id: Number,
     },
     computed: {
       Author() {
         return this.$store.state.employees.find((employee) => {
-          return employee.id == this.uuid;
+          return employee.id == this.id;
         });
-      },
-      Employees() {
-        return this.$store.state.employees;
       }
     }
   }

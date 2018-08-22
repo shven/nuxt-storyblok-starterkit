@@ -1,3 +1,9 @@
+/*
+  Load site settings.
+  F.e: primary navigation
+ */
 export default function ({ store }) {
-  return store.dispatch('loadSettings')
+  if(process.server && !store.state.settings) {
+    return store.dispatch('loadSettings');
+  }
 }

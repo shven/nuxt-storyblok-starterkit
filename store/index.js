@@ -1,15 +1,10 @@
 import Vuex from 'vuex';
-import moment from 'moment';
 
 import storyblokSettings from '~/plugins/storyblokSettings';
 
 const store = () => {
   return new Vuex.Store({
     state: {
-      settings: {
-        primary_navigation: []
-      },
-      employees: [],
       posts: [],
       post: {}
     },
@@ -30,6 +25,7 @@ const store = () => {
           }
         }
       },
+
       async loadSettings ({ commit }) {
         return this.$storyapi.get(`cdn/stories/_settings`, {
           cv: storyblokSettings.cv,
@@ -38,24 +34,30 @@ const store = () => {
           commit('setSettings', res.data.story.content)
         })
       },
+
       async getEmployees ({commit}) {
-        return this.$storyapi.get('cdn/stories', {
-          cv: storyblokSettings.cv,
-          starts_with: '_employees/',
-          version: storyblokSettings.version
-        }).then((res) => {
-          console.log(res.data.stories);
-          commit('setEmployees', res.data.stories)
-        })
+        if(process.server) {
+          return this.$storyapi.get('cdn/stories', {
+            cv: storyblokSettings.cv,
+            starts_with: '_employees/',
+            version: storyblokSettings.version
+          }).then((res) => {
+            console.log(res.data.stories);
+            commit('setEmployees', res.data.stories)
+          })
+        }
       },
+
       async getPosts ({commit}) {
-        return this.$storyapi.get('cdn/stories', {
-          cv: storyblokSettings.cv,
-          starts_with: 'blog/',
-          version: 'draft'
-        }).then((res) => {
-          commit('setPosts', res.data.stories)
-        })
+        if(process.server) {
+          return this.$storyapi.get('cdn/stories', {
+            cv: storyblokSettings.cv,
+            starts_with: 'blog/',
+            version: 'draft'
+          }).then((res) => {
+            commit('setPosts', res.data.stories)
+          })
+        }
       },
 
       async getPost ({commit}, id) {
@@ -68,6 +70,7 @@ const store = () => {
     },
     mutations: {
       setSettings (state, settings) {
+        console.log('SET SETTINGS')
         state.settings = settings
       },
       setEmployees: (state, posts) => {
