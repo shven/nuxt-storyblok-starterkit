@@ -1,7 +1,7 @@
 <template>
   <li>
     <nuxt-link :key="post.slug" :to="post.slug">
-        {{ post.name }}
+        {{ post.name }} - ul
     </nuxt-link>
   </li>
 </template>

@@ -50,28 +50,28 @@ export default {
   async asyncData (context) {
 
     /*
-     * Get data for overview components
+     * Get data for list components
      */
-    async function getOverviewContent(overviewObject) {
-      console.log('overviewObject');
-      console.log(overviewObject);
+    async function getListContent(listObject) {
+      console.log('listObject');
+      console.log(listObject);
       return await context.app.$storyapi.get('cdn/stories' , {
         version: storyblokSettings.version,
         cv: storyblokSettings.cv,
-        starts_with: overviewObject.contenttype,
-        sort_by: overviewObject.sortby ? overviewObject.sortby : 'created_at:desc',
-        per_page: overviewObject.perpage ? overviewObject.perpage : '50',
+        starts_with: listObject.contenttype,
+        sort_by: listObject.sortby ? listObject.sortby : 'created_at:desc',
+        per_page: listObject.perpage ? listObject.perpage : '50',
         page: '1',
-        is_startpage: false, // exclude start pages (fe: blog overview)
+        is_startpage: false, // exclude start pages (fe: blog list)
       }).then(data => {
-        console.log(`${moment().format('YYYYMMDDHHmm')}: Get overview content for ${overviewObject.contenttype}`);
+        console.log(`${moment().format('YYYYMMDDHHmm')}: Get list content for ${listObject.contenttype}`);
         return data.data.stories;
       });
     }
 
     /*
      * Recursively loop through page components (hero, teaser,...)
-     * Enrich overview component data ~ blogposts, employees,... (for server side rendering)
+     * Enrich list component data ~ blogposts, employees,... (for server side rendering)
      */
     async function enrichJsonObject(obj) {
       let richObj = [];
@@ -79,8 +79,8 @@ export default {
         if(obj[i].hasOwnProperty('elements')) {
           obj.elements = await enrichJsonObject(obj[i].elements);
         }
-        else if(obj[i].component == 'overview'){
-          obj[i].overviewcontent = await getOverviewContent(obj[i]);
+        else if(obj[i].component == 'list'){
+          obj[i].listcontent = await getListContent(obj[i]);
         }
         richObj.push(obj[i]);
       }

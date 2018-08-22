@@ -4,54 +4,52 @@
 
       <!-- If list type is masonry -->
       <masonry v-if="blok.listtype == 'masonry'"
-        :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
-        :gutter="0">
-          <div v-for="(post, index) in blok.overviewcontent" :key="index">
-            <brick :post="post" />
-          </div>
+               :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
+               :gutter="0">
+        <div v-for="(post, index) in blok.listcontent" :key="index">
+          <brick :post="post" />
+        </div>
       </masonry>
 
       <!-- else -->
-      <ul class="Overview"
+      <ul class="List"
           v-else
-          :class="['Overview--' + blok.listtype]">
+          :class="['List--' + blok.listtype]">
         <component
-          v-for="post in blok.overviewcontent"
+          v-for="post in blok.listcontent"
           :key="post.full_slug"
           :post="post"
           :is="blok.listtype" />
       </ul>
 
-      <div class="u-textAlignCenter">
-        <a class="Button" @click="nextPage" v-if="showLoadMoreButton">Load more</a>
+      <div class="u-textAlignCenter" v-if="showLoadMoreButton">
+        <a class="Button" @click="nextPage">Load more</a>
       </div>
     </spinner>
   </div>
 </template>
 
 <script>
-import storyblokSettings from '~/plugins/storyblokSettings';
+  import storyblokSettings from '~/plugins/storyblokSettings';
 
-export default {
+  export default {
     data () {
+      console.log(this.blok);
+
       return {
         page: 1,
-        perPage: 2,
-        showLoadMoreButton:  true,
-        stories: this.blok.overviewcontent,
+        perPage: this.blok.perpage,
+        showLoadMoreButton: false,
+        stories: this.blok.listcontent,
         loading: false,
       }
     },
     props: ['blok'],
-    head () {
-      return {
-         title: `Overview of ${this.blok.contenttype}`
-      }
-    },
     methods: {
       nextPage: function () {
         this.loading = true;
         this.page += 1;
+        this.showLoadMoreButton = false;
 
         return this.$storyapi.get('cdn/stories', {
           version: storyblokSettings.version,
@@ -60,21 +58,21 @@ export default {
           sort_by: this.blok.sortby ? this.blok.sortby : 'created_at:desc',
           page: this.page,
           per_page: this.blok.perpage,
-          is_startpage: false, // exclude start pages (fe: blog overview)
+          is_startpage: false, // exclude start pages (fe: blog list)
         }).then(data => {
           // Hide load more button when there are no more results
-          if(this.page * this.blok.perpage >= data.total) {
-            this.showLoadMoreButton = false;
+          if(this.page * this.blok.perpage < data.total) {
+            this.showLoadMoreButton = true;
           }
 
           /*
-            Merge serverside overviewcontent with new stories
+            Merge serverside listcontent with new stories
             Because components do not have an asyncData method,
             you cannot directly fetch async data server side within a component.
             https://nuxtjs.org/faq/async-data-components/
           */
-          this.blok.overviewcontent = [
-            ...this.blok.overviewcontent,
+          this.blok.listcontent = [
+            ...this.blok.listcontent,
             ...data.data.stories
           ];
           this.loading = false;
@@ -83,18 +81,18 @@ export default {
     },
     mounted() {
       this.$nextTick(() => {
-        //this.stories = this.getStories()
+        this.nextPage();
       })
     }
   }
 </script>
 
 <style lang="scss">
-  .Overview {
+  .List {
     position: relative;
   }
 
-  .Overview--loading {
+  .List--loading {
     min-height: 300px;
     &:after {
       content: ' ';
@@ -107,7 +105,7 @@ export default {
     }
   }
 
-  .Overview--card {
+  .List--card {
     margin: 0 (-$spacer/2);
     // grid-auto-rows: repeat(2, 1fr);
     @media screen and (min-width: size('medium')) {
