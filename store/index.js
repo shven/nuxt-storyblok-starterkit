@@ -40,6 +40,7 @@ const store = () => {
           return this.$storyapi.get('cdn/stories', {
             cv: storyblokSettings.cv,
             starts_with: '_employees/',
+            per_page: '100',
             version: storyblokSettings.version
           }).then((res) => {
             console.log(res.data.stories);
