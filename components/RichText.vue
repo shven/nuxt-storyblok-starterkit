@@ -9,7 +9,14 @@
 </template>
 
 <script>
+  import highlightjs from 'highlightjs';
   export default {
-    props: ['blok']
+    props: ['blok'],
+    mounted() {
+      let targets = this.$el.querySelectorAll('code')
+      targets.forEach((target) => {
+          highlightjs.highlightBlock(target)
+      });
+    },
   }
 </script>
