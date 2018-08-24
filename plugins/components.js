@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Page from '~/components/Page.vue'
 import Author from '~/components/Author.vue'
 import Post from '~/components/Post.vue'
+import Job from '~/components/Job.vue'
 import Brick from '~/components/list/Brick.vue'
 import Card from '~/components/list/Card.vue'
 import List from '~/components/list/List.vue'
+import ListTeaser from '~/components/list/ListTeaser.vue'
 import UnorderedList from '~/components/list/UnorderedList.vue'
 import Hero from '~/components/Hero.vue'
 import Teaser from '~/components/Teaser.vue'
@@ -26,9 +28,11 @@ import VideoBackground from '@/components/VideoBackground.vue';
 Vue.component('author', Author)
 Vue.component('icon', Icon)
 Vue.component('post', Post)
+Vue.component('job', Job)
 Vue.component('card', Card)
 Vue.component('brick', Brick)
 Vue.component('list', List)
+Vue.component('listTeaser', ListTeaser)
   Vue.component('unorderedList', UnorderedList)
 Vue.component('page', Page)
 Vue.component('teaser', Teaser)

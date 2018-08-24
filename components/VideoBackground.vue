@@ -34,8 +34,9 @@
         );
       });
       */
-
-      this.startVideo(video);
+      this.$nextTick(() => {
+        this.startVideo(video);
+      });
     },
     methods: {
       startVideo: function (video) {
