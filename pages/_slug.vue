@@ -54,7 +54,7 @@ export default {
      */
     async function getListContent(listObject) {
       console.log('listObject');
-      console.log(listObject);
+      // console.log(listObject);
       return await context.app.$storyapi.get('cdn/stories' , {
         version: storyblokSettings.version,
         cv: storyblokSettings.cv,
@@ -64,7 +64,7 @@ export default {
         page: '1',
         is_startpage: false, // exclude start pages (fe: blog list)
       }).then(data => {
-        console.log(`${moment().format('YYYYMMDDHHmm')}: Get list content for ${listObject.contenttype}`);
+        // console.log(`${moment().format('YYYYMMDDHHmm')}: Get list content for ${listObject.contenttype}`);
         return data.data.stories;
       });
     }

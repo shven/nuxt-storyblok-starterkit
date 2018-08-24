@@ -6,7 +6,7 @@
         <slot></slot>
       </div>
       <div class="Wrapper-background"
-        v-if="Blok.backgroundimage"
+        v-if="Blok.backgroundimage && !Blok.backgroundvideosrc"
         v-lazy:background-image="$options.filters.imageApi(Blok.backgroundimage, 'large')"
         :class="{
           'u-backgroundTopRight': Blok.backgroundposition == 'top right',
@@ -16,6 +16,8 @@
           'u-backgroundSizeContain': Blok.backgroundsize == 'contain',
         }">
       </div>
+
+      <video-background :src="Blok.backgroundvideosrc" :poster="Blok.backgroundimage" v-if="Blok.backgroundvideosrc && Blok.backgroundimage"></video-background>
     </div>
   </div>
 </template>

@@ -43,7 +43,7 @@ const store = () => {
             per_page: '100',
             version: storyblokSettings.version
           }).then((res) => {
-            console.log(res.data.stories);
+            // console.log(res.data.stories);
             commit('setEmployees', res.data.stories)
           })
         }

@@ -20,6 +20,7 @@ import Icon from '@/components/Icon';
 import Spinner from '@/components/Spinner';
 import Buttons from '@/components/Buttons.vue';
 import Button from '@/components/Button.vue';
+import VideoBackground from '@/components/VideoBackground.vue';
 
 
 Vue.component('author', Author)
@@ -43,3 +44,4 @@ Vue.component('markdown', Markdown)
 Vue.component('spinner', Spinner)
 Vue.component('buttons', Buttons)
 Vue.component('vueButton', Button)
+Vue.component('videoBackground', VideoBackground)
