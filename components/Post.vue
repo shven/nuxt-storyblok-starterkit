@@ -7,7 +7,9 @@ This component is used to render the Post content type on Storyblok
     <article>
       <header class="Wrapper u-textAlignCenter u-backgroundColor--light">
         <spacer size="medium"></spacer>
-        <h1>{{ pagetitle }}</h1>
+        <wrapper size="large">
+          <h1>{{ pagetitle }}</h1>
+        </wrapper>
         <div class="Title tiny uppercase" v-if="blok.published">
           <small>Posted <time :datetime="dataTime">{{ fromNow }}</time> by <em><author v-if="blok.author" :id="blok.author"></author></em></small>
         </div>
