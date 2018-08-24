@@ -25,7 +25,7 @@ module.exports = {
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {name: 'theme-color', content: '#E7199D'}, // Chrome tab color on android
+      {name: 'theme-color', content: '#000001'}, // Chrome tab color on android
       {hid: 'description', name: 'description', content: 'Nuxt + Storyblok'}
     ],
     link: [
@@ -39,7 +39,7 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: {color: '#0000ff'},
+  loading: {color: '#000001'},
   /*
   ** Build configuration
   */
