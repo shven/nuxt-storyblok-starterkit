@@ -1,7 +1,5 @@
 <template>
   <div v-editable="blok">
-    <spinner :loading="loading">
-
       <!-- If list type is masonry -->
       <masonry v-if="blok.listtype == 'masonry'"
                :cols="{default: 4, 1400: 3, 700: 2, 400: 1}"
@@ -22,10 +20,9 @@
           :is="blok.listtype" />
       </ul>
 
-      <div class="u-textAlignCenter" v-if="showLoadMoreButton">
-        <a class="Button" @click="nextPage">Load more</a>
+      <div class="u-textAlignCenter" v-if="showMoreButton">
+        <button class="Button" @click="nextPage" :disabled="loading">Load more</button>
       </div>
-    </spinner>
   </div>
 </template>
 
@@ -39,9 +36,9 @@
       return {
         page: 1,
         perPage: this.blok.perpage,
-        showLoadMoreButton: false,
         stories: this.blok.listcontent,
         loading: false,
+        nextContent: []
       }
     },
     props: ['blok'],
@@ -49,7 +46,11 @@
       nextPage: function () {
         this.loading = true;
         this.page += 1;
-        this.showLoadMoreButton = false;
+
+        this.blok.listcontent = [
+          ...this.blok.listcontent,
+          ...this.nextContent
+        ];
 
         return this.$storyapi.get('cdn/stories', {
           version: storyblokSettings.version,
@@ -60,21 +61,19 @@
           per_page: this.blok.perpage,
           is_startpage: false, // exclude start pages (fe: blog list)
         }).then(data => {
-          // Hide load more button when there are no more results
-          if(this.page * this.blok.perpage < data.total) {
-            this.showLoadMoreButton = true;
-          }
-
+          this.nextContent = data.data.stories;
           /*
             Merge serverside listcontent with new stories
             Because components do not have an asyncData method,
             you cannot directly fetch async data server side within a component.
             https://nuxtjs.org/faq/async-data-components/
           */
+          /*
           this.blok.listcontent = [
             ...this.blok.listcontent,
             ...data.data.stories
           ];
+          */
           this.loading = false;
         })
       }
@@ -83,6 +82,11 @@
       this.$nextTick(() => {
         this.nextPage();
       })
+    },
+    computed: {
+      showMoreButton() {
+        return this.nextContent.length > 0;
+      }
     }
   }
 </script>

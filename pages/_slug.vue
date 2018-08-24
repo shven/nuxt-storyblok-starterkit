@@ -76,6 +76,7 @@ export default {
     async function enrichJsonObject(obj) {
       let richObj = [];
       for(var i in obj) {
+        // loop trough elements tree
         if(obj[i].hasOwnProperty('elements')) {
           obj.elements = await enrichJsonObject(obj[i].elements);
         }

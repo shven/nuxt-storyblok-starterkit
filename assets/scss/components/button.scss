@@ -16,6 +16,10 @@
   margin: 0 $spacer/4;
   text-align: center;
 
+  &:disabled {
+    opacity: 0.1;
+  }
+
   &:hover {
     cursor: pointer;
     text-decoration: none;
