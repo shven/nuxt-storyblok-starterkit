@@ -1,12 +1,12 @@
 <template>
   <li class="ListTeaser">
       <h2>
-        <nuxt-link class="ListTeaser-link" :key="post.slug" :to="post.slug">{{ post.name }}</nuxt-link>
+        <nuxt-link class="ListTeaser-link" :key="post.full_slug" :to="post.full_slug">{{ post.name }}</nuxt-link>
       </h2>
       <p v-if="post.content.metadescription">
         {{ post.content.metadescription }}
       </p>
-      <nuxt-link class="ListTeaser-readMore" :key="post.slug" :to="post.slug">Read more</nuxt-link>
+      <nuxt-link class="ListTeaser-readMore" :key="post.full_slug" :to="post.full_slug">Read more</nuxt-link>
   </li>
 </template>
 

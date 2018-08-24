@@ -1,6 +1,6 @@
 <template>
   <li>
-    <nuxt-link :key="post.slug" :to="post.slug">
+    <nuxt-link :key="post.full_slug" :to="post.full_slug">
         {{ post.name }}
     </nuxt-link>
   </li>
